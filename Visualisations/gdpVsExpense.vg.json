@@ -9,11 +9,11 @@
   "params": [
     {
       "name": "Year_selection",
-      "value": 2022,
+      "value": 2020,
       "bind": {
         "input": "range",
-        "min": 1970,
-        "max": 2022,
+        "min": 1960,
+        "max": 2020,
         "step": 1,
         "name": "Year: "
       }
@@ -45,7 +45,9 @@
     }
   ],
   "transform": [
-    { "filter": "datum.Year == Year_selection" },
+    {
+      "filter": "datum.Year <= 2020"
+    },
     {
       "filter": "Continent_selection == null ? true : datum.Continent == Continent_selection"
     },
@@ -76,12 +78,14 @@
     "y": {
       "field": "GDP (Billion USD$)",
       "type": "quantitative",
+      "title": "GDP (Billion USD$)",
       "axis": { "tickCount": 7 },
       "scale": { "type": "log", "domain": [0.01, 100000] }
     }
   },
   "layer": [
     {
+      "transform": [{ "filter": "datum.Year == Year_selection" }],
       "mark": "circle",
       "encoding": {
         "size": {
@@ -115,7 +119,7 @@
             ]
           }
         },
-        "opacity": { "value": 0.8 },
+        "opacity": { "value": 1 },
         "tooltip": [
           { "field": "Entity", "type": "nominal", "title": "Country" },
           {
@@ -137,22 +141,100 @@
       }
     },
     {
-      "data": {
-        "values": [
-          { "x": 900, "y": 12000, "label": "The USA has the highest GDP of almost 21 Billion USD$" },
-          { "x": 0.53, "y": 0.1, "label": "The Marshall Islands have one of the largest Expense:GDP ratios" }
+      "transform": [{ "filter": {
+        "or": [
+          "datum.Year % 10 == 0",
+          "datum.Year == Year_selection"
         ]
+      } }],
+      "mark": {
+        "type": "line",
+        "size": 7,
+        "color": "lightgrey",
+        "strokeCap": "round"
       },
-      "mark": "text",
       "encoding": {
-        "x": { "field": "x", "type": "quantitative" },
-        "y": { "field": "y", "type": "quantitative" },
-        "text": { "field": "label", "type": "nominal" },
-        "color": { "value": "black" },
-        "size": { "value": 12 },
-        "stroke": { "value": "black" },
-        "strokeWidth": { "value": 0.5 }
+        "detail": { "field": "Entity", "type": "nominal" },
+        "order": { "field": "Year", "type": "ordinal" },
+        "opacity": {
+          "condition": {
+            "test": {
+              "or": [
+                { "param": "hovered", "empty": false },
+                { "param": "clicked", "empty": false }
+              ]
+            },
+            "value": 0.8
+          },
+          "value": 0
+        }
       }
+    },
+    {
+      "params": [
+        {
+          "name": "hovered",
+          "select": {
+            "type": "point",
+            "fields": ["Entity"],
+            "toggle": false,
+            "on": "mouseover"
+          }
+        },
+        {
+          "name": "clicked",
+          "select": { "type": "point", "fields": ["Entity"], "on": "click" }
+        }
+      ],
+      "transform": [{ "filter": "datum.Year == Year_selection" }],
+      "mark": { "type": "circle", "size": 100, "opacity": 0.9 },
+      "encoding": { "color": { "field": "Continent", "title": "Region" } }
+    },
+    {
+      "transform": [
+        {
+          "filter": {
+            "and": [
+              "datum.Year == Year_selection",
+              {
+                "or": [
+                  { "param": "hovered", "empty": false },
+                  { "param": "clicked", "empty": false }
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "yOffset": -12,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": { "field": "Entity", "type": "nominal" },
+        "color": { "field": "Continent", "title": "Region" }
+      }
+    },
+    {
+      "transform": [
+        { "filter": { "param": "hovered", "empty": false } },
+        { "filter": { "not": "datum.Year==Year_selection" } },
+        { "filter": "datum.Year % 10 == 0" }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "yOffset": -12,
+            "fontSize": 12,
+            "color": "gray"
+          },
+          "encoding": { "text": { "field": "Year" } }
+        },
+        { "mark": { "type": "circle", "color": "gray" } }
+      ]
     }
   ]
 }

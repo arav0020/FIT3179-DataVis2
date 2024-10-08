@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 600,
-  "title": "Global Expense vs GDP",
+  "title": "GDP vs Government Expenditure (1960-2020)",
   "data": {
     "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Data/expenseVsGDP.csv"
   },
@@ -53,6 +53,9 @@
     },
     {
       "filter": "datum.Expense != null && datum.GDP != null && datum.Expense > 0 && datum.GDP > 0 && datum.Entity != null"
+    },
+    {
+      "filter": "datum.Expense / 1000000000 > 0.01"
     },
     {
       "calculate": "(datum.Expense / datum.GDP) * 100",
@@ -141,12 +144,13 @@
       }
     },
     {
-      "transform": [{ "filter": {
-        "or": [
-          "datum.Year % 10 == 0",
-          "datum.Year == Year_selection"
-        ]
-      } }],
+      "transform": [
+        {
+          "filter": {
+            "or": ["datum.Year % 10 == 0", "datum.Year == Year_selection"]
+          }
+        }
+      ],
       "mark": {
         "type": "line",
         "size": 7,
@@ -188,7 +192,27 @@
       ],
       "transform": [{ "filter": "datum.Year == Year_selection" }],
       "mark": { "type": "circle", "size": 100, "opacity": 0.9 },
-      "encoding": { "color": { "field": "Continent", "title": "Region" } }
+      "encoding": {
+        "color": { "field": "Continent", "title": "Region" },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal", "title": "Country" },
+          {
+            "field": "Expense (Billion USD$)",
+            "type": "quantitative",
+            "format": ".2f"
+          },
+          {
+            "field": "GDP (Billion USD$)",
+            "type": "quantitative",
+            "format": ".2f"
+          },
+          {
+            "field": "Expense percentage of GDP",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
     },
     {
       "transform": [

@@ -50,6 +50,9 @@
         <div class="pure-u-1 pure-u-md-1-2">
           <div id="bar_chart" class="vis-container"></div>
         </div>
+        <div class="pure-u-1 pure-u-md-1-2">
+          <div id="stream_graph" class="vis-container"></div>
+        </div>
       </div>
       <!-- End Visualization section -->
     </div>
@@ -67,6 +70,11 @@
 
       var barChart = "Visualisations/netMigration.vg.json";
       vegaEmbed("#bar_chart", barChart)
+        .then(function (result) {})
+        .catch(console.error);
+
+      var streamGraph = "Visualisations/ageDependency.vg.json";
+      vegaEmbed("#stream_graph", streamGraph)
         .then(function (result) {})
         .catch(console.error);
     </script>

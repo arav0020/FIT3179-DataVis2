@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title": "Net migration",
+  "data": {
+    "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Data/ageDependencyRatio.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Year <= 2020"
+    },
+    {
+      "filter": "datum.Dependency != null && datum.Entity != '' && datum.Continent != '' && datum.Dependency != ''"
+    },
+    {
+      "aggregate": [
+        { "op": "mean", "field": "Dependency", "as": "Avg_Dependency" }
+      ],
+      "groupby": ["Year", "Continent"]
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "quantitative",
+      "axis": { "title": "Year", "format": "d" },
+      "scale": { "domain": [1950, 2020] }
+    },
+    "y": {
+      "field": "Avg_Dependency",
+      "type": "quantitative",
+      "axis": null,
+      "stack": "center"
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "area"
+      },
+      "encoding": {
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": { "value": 1 },
+        "tooltip": [
+          { "field": "Continent", "type": "nominal", "title": "Continent" },
+          {
+            "field": "Avg_Dependency",
+            "type": "quantitative",
+            "title": "Dependency Ratio",
+            "format": ".2f"
+          },
+          {
+            "field": "Year",
+            "type": "quantitative",
+            "title": "Year",
+            "format": "d"
+          }
+        ]
+      }
+    }
+  ]
+}

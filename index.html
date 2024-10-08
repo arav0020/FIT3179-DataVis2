@@ -31,9 +31,10 @@
       <!-- Header section -->
       <div class="pure-g">
         <div class="pure-u-1-1">
-          <h1>GDP visualisations</h1>
+          <h1>Global Economic factors</h1>
           <p>
-            Interact and view the data to see the trend of the data over time.
+            Interact and view the data to see the trend of the data over time
+            for multiple different economic factors for different nations.
           </p>
         </div>
       </div>
@@ -41,14 +42,54 @@
 
       <!-- Visualization section with choropleth map on left and line chart on right -->
       <div class="pure-g">
+        <div class="pure-u-1-1">
+          <h2>GDP data around the world</h2>
+          <p>
+            The map below shows the GDP of each nation around the world in terms
+            of Billion USD$. You may hover over each nation to see the exact GDP
+            value. This data is taken based on the 2022 GDP standings of the
+            nation.
+          </p>
+        </div>
         <div class="pure-u-1 pure-u-md-1-2">
           <div id="choropleth_map" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-1">
+          <h2>GDP vs Government Expenses (Billion USD$)</h2>
+          <p>
+            The scatter plot below shows the GDP of each nation in terms of
+            Billion USD$ and the government expenses in terms of Billion USD$.
+            You may hover over each point to see the exact GDP and government
+            expenses value. This data is taken based on the 2022 GDP and
+            government expenses of the nation. Hovering over each point will
+            also show the trend of the nation's data over time. The size of each
+            point will also show the ratio of a nation's Expense to its GDP.
+          </p>
         </div>
         <div class="pure-u-1 pure-u-md-1-2">
           <div id="scatter_plot" class="vis-container"></div>
         </div>
+        <div class="pure-u-1-1">
+          <h2>Net Migration (Per 1000 people)</h2>
+          <p>
+            The bar chart shows important information on the net number of
+            people migrating into a nation (normalised per 1000 people). This
+            gives a good indication of which nations have more people coming
+            into the country over time.
+          </p>
+        </div>
         <div class="pure-u-1 pure-u-md-1-2">
           <div id="bar_chart" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-1">
+          <h2>Proportion of Elderly Citizens to the Working Population</h2>
+          <p>
+            The information below gives an indication as to how mature a nation
+            is. A nation which has an extremely high ratio of elderly citizens
+            to the working population generally indicates that it is much more
+            mature, meaning they may require more foreign workers immigrating
+            into the nation to fill working roles.
+          </p>
         </div>
         <div class="pure-u-1 pure-u-md-1-2">
           <div id="stream_graph" class="vis-container"></div>

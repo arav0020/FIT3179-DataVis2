@@ -52,12 +52,12 @@
     </div>
 
     <script type="text/javascript">
-      var choroplethMap = "./Visualisations/gdpMap.vg.json";
+      var choroplethMap = "Visualisations/gdpMap.vg.json";
       vegaEmbed("#choropleth_map", choroplethMap)
         .then(function (result) {})
         .catch(console.error);
 
-      var scatterPlot = "./Visualisations/gdpVsExpense.vg.json";
+      var scatterPlot = "Visualisations/gdpVsExpense.vg.json";
       vegaEmbed("#scatter_plot", scatterPlot)
         .then(function (result) {})
         .catch(console.error);

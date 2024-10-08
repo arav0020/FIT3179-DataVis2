@@ -1,0 +1,158 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title": "Global Expense vs GDP",
+  "data": {
+    "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Data/expenseVsGDP.csv"
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2022,
+      "bind": {
+        "input": "range",
+        "min": 1970,
+        "max": 2022,
+        "step": 1,
+        "name": "Year: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    { "filter": "datum.Year == Year_selection" },
+    {
+      "filter": "Continent_selection == null ? true : datum.Continent == Continent_selection"
+    },
+    {
+      "filter": "datum.Expense != null && datum.GDP != null && datum.Expense > 0 && datum.GDP > 0 && datum.Entity != null"
+    },
+    {
+      "calculate": "(datum.Expense / datum.GDP) * 100",
+      "as": "Expense percentage of GDP"
+    },
+    {
+      "calculate": "datum.GDP / 1000000000",
+      "as": "GDP (Billion USD$)"
+    },
+    {
+      "calculate": "datum.Expense / 1000000000",
+      "as": "Expense (Billion USD$)"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Expense (Billion USD$)",
+      "type": "quantitative",
+      "title": "Expense (Billion USD$)",
+      "axis": { "tickCount": 6 },
+      "scale": { "type": "log", "domain": [0.01, 10000] }
+    },
+    "y": {
+      "field": "GDP (Billion USD$)",
+      "type": "quantitative",
+      "axis": { "tickCount": 7 },
+      "scale": { "type": "log", "domain": [0.01, 100000] }
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "Expense percentage of GDP",
+          "type": "quantitative",
+          "scale": {
+            "type": "threshold",
+            "domain": [1, 10, 30, 50]
+          },
+          "legend": { "format": ".1s" }
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": { "value": 0.8 },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal", "title": "Country" },
+          {
+            "field": "Expense (Billion USD$)",
+            "type": "quantitative",
+            "format": ".2f"
+          },
+          {
+            "field": "GDP (Billion USD$)",
+            "type": "quantitative",
+            "format": ".2f"
+          },
+          {
+            "field": "Expense percentage of GDP",
+            "type": "quantitative",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          { "x": 900, "y": 12000, "label": "The USA has the highest GDP of almost 21 Billion USD$" },
+          { "x": 0.53, "y": 0.1, "label": "The Marshall Islands have one of the largest Expense:GDP ratios" }
+        ]
+      },
+      "mark": "text",
+      "encoding": {
+        "x": { "field": "x", "type": "quantitative" },
+        "y": { "field": "y", "type": "quantitative" },
+        "text": { "field": "label", "type": "nominal" },
+        "color": { "value": "black" },
+        "size": { "value": 12 },
+        "stroke": { "value": "black" },
+        "strokeWidth": { "value": 0.5 }
+      }
+    }
+  ]
+}

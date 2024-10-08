@@ -1,0 +1,122 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title": "Net migration",
+  "data": {
+    "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Data/netMigration.csv"
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 1960,
+        "max": 2020,
+        "step": 1,
+        "name": "Year: "
+      }
+    },
+    {
+      "name": "Continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "North America",
+          "South America",
+          "Europe",
+          "Africa",
+          "Asia",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.Year <= 2020"
+    },
+    {
+      "filter": "Continent_selection == null ? true : datum.Continent == Continent_selection"
+    },
+    {
+      "filter": "datum.Migration != null && datum.Migration <= 50 && datum.Migration >= -50 && datum.Entity != null && datum.Continent != ''"
+    },
+    {
+      "filter": "datum.Year == Year_selection"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Entity",
+      "type": "nominal",
+      "title": "Country",
+      "sort": { "field": "Continent" },
+      "axis": {
+        "labelAngle": -45,
+        "ticks": false
+      }
+    },
+    "y": {
+      "field": "Migration",
+      "type": "quantitative",
+      "title": "Net Migration (per 1000 people)",
+      "scale": { "type": "linear", "domain": [-50, 50] }
+    }
+  },
+  "layer": [
+    {
+      "transform": [{ "filter": "datum.Year == Year_selection" }],
+      "mark": {
+        "type": "bar",
+        "size": 5
+      },
+      "encoding": {
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          }
+        },
+        "opacity": { "value": 1 },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal", "title": "Country" },
+          {
+            "field": "Migration",
+            "type": "quantitative",
+            "title": "Net Migration (per 1000 people)",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}

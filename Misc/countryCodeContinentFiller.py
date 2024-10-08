@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load your CSV file
-file_path = 'expenseVsGDP.csv'  # Update with your actual file path
+file_path = '../Data/netMigration.csv'  # Update with your actual file path
 df = pd.read_csv(file_path)
 
 # Create the extended dictionary for country code to continent mapping
@@ -259,7 +259,7 @@ extended_country_code_to_continent = {
 df['Continent'] = df['Code'].map(extended_country_code_to_continent).fillna(df['Continent'])
 
 # Save the updated dataframe back to a CSV file
-output_file_path = 'expenseVsGDP.csv'  # Update with your desired file path
-df.to_csv(output_file_path, index=False)
+# output_file_path = '../Data/co2Emissions.csv'  # Update with your desired file path
+df.to_csv(file_path, index=False)
 
 print("The continent field has been successfully filled and the updated file has been saved.")

@@ -1,10 +1,10 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 1000,
-  "height": 600,
+  "width": "container",
+  "height": 500,
   "title": {
     "text": "Net migration into each country (per 1000 people)",
-    "subtitle": "Shows the number of migrants entering the country minus those leaving",
+    "subtitle": "You can filter the year and continent you wish to display",
     "subtitleColor": "gray",
     "fontSize": 20,
     "fontWeight": "bold"

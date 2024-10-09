@@ -34,9 +34,14 @@
     <link rel="stylesheet" type="text/css" href="styles.css" media="all" />
   </head>
 
-  <body style=" background: no-repeat
-  url('https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Misc/backgroundImg.jpg');
-  background-size: cover; background-position: top; " ></body>
+  <body
+    style="
+      background: no-repeat
+        url('https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Misc/backgroundImg.jpg');
+      background-size: cover;
+      background-position: top;
+    "
+  ></body>
 
   <body>
     <div class="page">
@@ -55,91 +60,167 @@
         </div>
       </div>
 
-      <br />
-      <br />
+      <br /><br />
       <!-- End Header section -->
 
-      <!-- Visualization section with choropleth map on left and line chart on right -->
+      <!-- Visualization section -->
       <div class="card text-center">
         <div class="card-body bg-white text-dark">
-          <h4 class="card-title">GDP data around the world</h3>
+          <h4 class="card-title"><b>GDP data around the world</b></h4>
           <p class="card-text">
-            One of the most important economic indicators of a country is the Gross Domestic Product or GDP of the country, and it is one of the most commonly used measure of a country's economic performance. 
+            One of the most important economic indicators of a country is the
+            Gross Domestic Product or GDP of the country, and it is one of the
+            most commonly used measure of a country's economic performance.
           </p>
 
           <div class="card-body-center">
             <div id="choropleth_map" class="vis-container"></div>
           </div>
+        </div>
+        <div class="card-footer text-right bg-light">
+          <p class="card-text text-end text-muted">
+            <i>Source: </i
+            ><a
+              href="https://ourworldindata.org/grapher/national-gdp-constant-usd-wb?tab=table"
+              ><i>ourworldindata.org </i></a
+            >
+          </p>
+        </div>
+      </div>
 
-          <div class="card-footer text-right bg-light">
-            <p class="card-text text-end text-muted"> <i>Source: </i><a href="https://ourworldindata.org/grapher/national-gdp-constant-usd-wb?tab=table"><i>ourworldindata.org </i></a> </p>
+      <br /><br />
+
+      <div class="card text-center">
+        <div class="card-body bg-white text-dark">
+          <h4 class="card-title">
+            <b>GDP vs Government Expenses around the world</b>
+          </h4>
+          <p class="card-text">
+            Even if a nation has an extremely high GDP, it is important to
+            understand how much of that GDP is being spent by the government. If
+            the government is spending a large portion of the GDP, then it could
+            be an indicator of an unhealthy economy. Therefore, it is important
+            to understand the relationship between these factors
+          </p>
+
+          <div class="card-body-center">
+            <div id="scatter_plot" class="vis-container"></div>
           </div>
         </div>
+        <div class="card-footer text-right bg-light">
+          <p class="card-text text-end text-muted">
+            <i>Source: </i
+            ><a
+              href="https://ourworldindata.org/grapher/national-gdp-constant-usd-wb?tab=table"
+              ><i>ourworldindata.org </i></a
+            >
+          </p>
+        </div>
       </div>
 
+      <br /><br />
 
+      <div class="card text-center">
+        <div class="card-body bg-white text-dark">
+          <h4 class="card-title"><b>Net Migration by Country</b></h4>
+          <p class="card-text">
+            The amount of migrants coming into a nation is also an extremely
+            good indicator of how healthy the country's economy is. In general,
+            a nation with a high number of migrants coming in tends to indicate
+            that the country has a booming economy, thus providing job
+            opportunities for immigrants. However, it is also important to
+            consider the number of people moving out of the country. Therefore,
+            we instead consider the net migration rate, which is the difference
+            between these 2 indicators.
+          </p>
 
-      <div class="pure-g">
-        <div class="pure-u-1-1">
-          <h2>GDP data around the world</h2>
-          <p>
-            The map below shows the GDP of each nation around the world in terms
-            of Billion USD$. You may hover over each nation to see the exact GDP
-            value. This data is taken based on the 2022 GDP standings of the
-            nation.
+          <div class="card-body-center">
+            <div id="bar_chart" class="vis-container"></div>
+          </div>
+        </div>
+        <div class="card-footer text-right bg-light">
+          <p class="card-text text-end text-muted">
+            <i>Source: </i
+            ><a
+              href="https://ourworldindata.org/grapher/national-gdp-constant-usd-wb?tab=table"
+              ><i>ourworldindata.org </i></a
+            >
           </p>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2">
-          <div id="choropleth_map" class="vis-container"></div>
-        </div>
-        <div class="pure-u-1-1">
-          <h2>GDP vs Government Expenses (Billion USD$)</h2>
-          <p>
-            The scatter plot below shows the GDP of each nation in terms of
-            Billion USD$ and the government expenses in terms of Billion USD$.
-            You may hover over each point to see the exact GDP and government
-            expenses value. This data is taken based on the 2022 GDP and
-            government expenses of the nation. Hovering over each point will
-            also show the trend of the nation's data over time. The size of each
-            point will also show the ratio of a nation's Expense to its GDP.
-          </p>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2">
-          <div id="scatter_plot" class="vis-container"></div>
-        </div>
-        <div class="pure-u-1-1">
-          <h2>Net Migration (Per 1000 people)</h2>
-          <p>
-            The bar chart shows important information on the net number of
-            people migrating into a nation (normalised per 1000 people). This
-            gives a good indication of which nations have more people coming
-            into the country over time.
-          </p>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2">
-          <div id="bar_chart" class="vis-container"></div>
-        </div>
-        <div class="pure-u-1-1">
-          <h2>Proportion of Elderly Citizens to the Working Population</h2>
-          <p>
-            The information below gives an indication as to how mature a nation
-            is. A nation which has an extremely high ratio of elderly citizens
-            to the working population generally indicates that it is much more
-            mature, meaning they may require more foreign workers immigrating
-            into the nation to fill working roles.
-          </p>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2">
-          <div id="stream_graph" class="vis-container"></div>
-        </div>
-        <div class="pure-u-1-1">
-          <h2>Co2 Emissions</h2>
-          <p>talks about emissions</p>
-        </div>
-        <div class="pure-u-1 pure-u-md-1-2">
-          <div id="heat_map" class="vis-container"></div>
         </div>
       </div>
+
+      <br /><br />
+
+      <div class="card text-center">
+        <div class="card-body bg-white text-dark">
+          <h4 class="card-title">
+            <b>Ratio of Elderly Citizens to Working Age Citizens</b>
+          </h4>
+          <p class="card-text">
+            One of the ways to predict the future state of a country is to see
+            what proportion of its population consists of elderly citizens.
+            These citizens will no longer be working, and will therefore be
+            relying on the working age population. An extremely high ratio will
+            indicate that the nation may require more foreign workers to fill
+            the working roles.
+          </p>
+
+          <div class="card-body-center">
+            <div id="stream_graph" class="vis-container"></div>
+          </div>
+        </div>
+        <div class="card-footer text-right bg-light">
+          <p class="card-text text-end text-muted">
+            <i>Source: </i
+            ><a href="https://ourworldindata.org/age-structure"
+              ><i>ourworldindata.org </i></a
+            >
+          </p>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div class="card text-center">
+        <div class="card-body bg-white text-dark">
+          <h4 class="card-title"><b>Carbon Emission per Capita</b></h4>
+          <p class="card-text">
+            Finally, we look at the carbon emissions per capita of a country.
+            This is an important indicator of how much a country is contributing
+            to global warming. The data must be normalised by population as
+            otherwise, it would be unfair to countries with large populations.
+            By visualising this, we are able to see the trend of each country to
+            see how their C02 output has been over the last 40 years.
+          </p>
+
+          <div class="card-body-center">
+            <div id="heat_map" class="vis-container"></div>
+          </div>
+        </div>
+        <div class="card-footer bg-light">
+          <p class="card-text text-end text-muted">
+            <i>Source: </i
+            ><a
+              href="https://ourworldindata.org/co2-and-greenhouse-gas-emissions"
+              ><i>ourworldindata.org </i></a
+            >
+          </p>
+        </div>
+      </div>
+
+      <br /><br />
+
+      <div class="card text-end">
+        <div class="card-footer text-center bg-light">
+          <p class="card-text text-muted">
+            <i
+              >Created by <b>Avinash Rvan</b> for
+              <b>FIT3179 Data Visualisation 2</b></i
+            >
+          </p>
+        </div>
+      </div>
+
       <!-- End Visualization section -->
     </div>
 

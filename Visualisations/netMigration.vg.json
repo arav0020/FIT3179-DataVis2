@@ -166,6 +166,78 @@
           }
         ]
       }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Entity == 'Malaysia'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "xOffset": -30,
+        "yOffset": -10,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "text": {
+          "field": "Entity",
+          "type": "nominal"
+        },
+        "color":{
+          "value": "maroon"
+        }
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Entity == 'Australia'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "xOffset": -30,
+        "yOffset": -10,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "text": {
+          "field": "Entity",
+          "type": "nominal"
+        },
+        "color":{
+          "value": "maroon"
+        }
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.Code == 'USA'"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "xOffset": -30,
+        "yOffset": -10,
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "black"
+      },
+      "encoding": {
+        "text": {
+          "field": "Entity",
+          "type": "nominal"
+        },
+        "color":{
+          "value": "maroon"
+        }
+      }
     }
   ]
 }

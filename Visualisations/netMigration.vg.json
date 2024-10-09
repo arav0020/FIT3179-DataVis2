@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
+  "width": 1000,
   "height": 600,
   "title": "Net migration",
   "data": {
@@ -81,7 +81,58 @@
       "transform": [{ "filter": "datum.Year == Year_selection" }],
       "mark": {
         "type": "bar",
-        "size": 5
+        "size": 3
+      },
+      "encoding": {
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "North America",
+              "South America",
+              "Europe",
+              "Africa",
+              "Asia",
+              "Oceania"
+            ],
+            "range": [
+              "#e41a1c",
+              "#984ea3",
+              "#ff7f00",
+              "#a6cee3",
+              "#377eb8",
+              "#a65628"
+            ]
+          },
+          "condition": [
+            {
+              "test": "Continent_selection != null && datum.Migration >0",
+              "value": "#006164"
+            },
+            {
+              "test": "Continent_selection != null && datum.Migration <0",
+              "value": "#DB4325"
+            }
+          ]
+        },
+        "opacity": { "value": 0.4 },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal", "title": "Country" },
+          {
+            "field": "Migration",
+            "type": "quantitative",
+            "title": "Net Migration (per 1000 people)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "opacity": 0.9,
+        "size": 120
       },
       "encoding": {
         "color": {
@@ -106,7 +157,6 @@
             ]
           }
         },
-        "opacity": { "value": 1 },
         "tooltip": [
           { "field": "Entity", "type": "nominal", "title": "Country" },
           {

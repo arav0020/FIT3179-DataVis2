@@ -2,7 +2,13 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 600,
-  "title": "GDP vs Government Expenditure (1960-2020)",
+  "title": {
+    "text": "World GDP vs Government Expenditure (Billion USD$)",
+    "subtitle": "Hover over a country to see the country's trend",
+    "subtitleColor": "gray",
+    "fontSize": 20,
+    "fontWeight": "bold"
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Data/expenseVsGDP.csv"
   },
@@ -75,14 +81,14 @@
       "field": "Expense (Billion USD$)",
       "type": "quantitative",
       "title": "Expense (Billion USD$)",
-      "axis": { "tickCount": 6 },
+      "axis": { "tickCount": 6, "titleFontSize": 15, "labelFontSize": 15 },
       "scale": { "type": "log", "domain": [0.01, 10000] }
     },
     "y": {
       "field": "GDP (Billion USD$)",
       "type": "quantitative",
       "title": "GDP (Billion USD$)",
-      "axis": { "tickCount": 7 },
+      "axis": { "tickCount": 7, "titleFontSize": 15, "labelFontSize": 15 },
       "scale": { "type": "log", "domain": [0.01, 100000] }
     }
   },
@@ -98,28 +104,40 @@
             "type": "threshold",
             "domain": [1, 10, 30, 50]
           },
-          "legend": { "format": ".1s" }
+          "legend": {
+            "format": ".1s",
+            "padding": 10,
+            "labelFontSize": 12,
+            "titleFontSize": 12
+          }
         },
         "color": {
           "field": "Continent",
           "type": "nominal",
           "scale": {
             "domain": [
-              "North America",
-              "South America",
-              "Europe",
               "Africa",
               "Asia",
-              "Oceania"
+              "Europe",
+              "North America",
+              "Oceania",
+              "South America"
             ],
             "range": [
-              "#e41a1c",
-              "#984ea3",
-              "#ff7f00",
               "#a6cee3",
               "#377eb8",
-              "#a65628"
+              "#ff7f00",
+              "#e41a1c",
+              "#a65628",
+              "#984ea3"
             ]
+          },
+          "legend": {
+            "title": "Region",
+            "titleFontSize": 12,
+            "labelFontSize": 12,
+            "padding": 10,
+            "symbolSize": 200
           }
         },
         "opacity": { "value": 1 },

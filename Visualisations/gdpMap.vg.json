@@ -1,6 +1,12 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "World GDP (In Billion USD$)",
+  "title": {
+    "text": "World GDP in 2022 (Billion USD$)",
+    "subtitle": "Hover over a country to see exact figures",
+    "subtitleColor": "gray",
+    "fontSize": 20,
+    "fontWeight": "bold"
+  },
   "width": 800,
   "height": 400,
   "data": {
@@ -56,6 +62,12 @@
           "scale": {
             "type": "log",
             "scheme": "yellowgreenblue"
+          },
+          "legend":{
+            "title": "GDP (Billion USD$)",
+            "titleFontSize": 15,
+            "labelFontSize": 15,
+            "padding": 20
           }
         },
         "tooltip": [

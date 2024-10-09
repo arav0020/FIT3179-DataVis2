@@ -2,7 +2,12 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 600,
-  "title": "CO2 Emissions (tonnes) per Capita Heatmap",
+  "title": {
+    "text": "Carbon emissions (tonnes) per capita by country",
+    "subtitle": "Shows the tonnes of C02 emissions per capita for key countries",
+    "subtitleFontStyle": "italic",
+    "fontSize": 20
+  },
   "data": {
     "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Data/co2EmissionsPerCapita.csv"
   },
@@ -17,7 +22,7 @@
       "filter": "datum.Year >= 1980 && datum.Year <= 2022"
     },
     {
-        "filter": "datum.Year % 2 == 0"
+      "filter": "datum.Year % 2 == 0"
     }
   ],
   "encoding": {
@@ -26,7 +31,9 @@
       "type": "ordinal",
       "title": "Year",
       "axis": {
-        "labelAngle": -45
+        "labelAngle": -45,
+        "labelFontSize": 15,
+        "titleFontSize": 15
       }
     },
     "y": {
@@ -34,7 +41,9 @@
       "type": "nominal",
       "title": "Country",
       "axis": {
-        "labelAngle": 0
+        "labelAngle": 0,
+        "labelFontSize": 15,
+        "titleFontSize": 15
       }
     }
   },
@@ -48,6 +57,11 @@
           "title": "CO2 Emissions per Capita",
           "scale": {
             "scheme": "yellowgreenblue"
+          },
+          "legend": {
+            "title": "C02 Emissions (tonnes)",
+            "labelFontSize": 15,
+            "titleFontSize": 15
           }
         },
         "tooltip": [

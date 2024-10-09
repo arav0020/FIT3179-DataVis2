@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 800,
+  "height": 600,
+  "title": "CO2 Emissions (tonnes) per Capita Heatmap",
+  "data": {
+    "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Data/co2EmissionsPerCapita.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Code == 'MYS' || datum.Code == 'USA' || datum.Code == 'AUS' || datum.Code == 'CAN' || datum.Code == 'CHN' || datum.Code == 'SAU' || datum.Code == 'RUS' || datum.Code == 'DEU' || datum.Code == 'GBR' || datum.Code == 'FRA'"
+    },
+    {
+      "filter": "datum.Emissions != null && datum.Entity != null && datum.Year != null"
+    },
+    {
+      "filter": "datum.Year >= 1980 && datum.Year <= 2022"
+    },
+    {
+        "filter": "datum.Year % 2 == 0"
+    }
+  ],
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": -45
+      }
+    },
+    "y": {
+      "field": "Entity",
+      "type": "nominal",
+      "title": "Country",
+      "axis": {
+        "labelAngle": 0
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": "rect",
+      "encoding": {
+        "color": {
+          "field": "Emissions",
+          "type": "quantitative",
+          "title": "CO2 Emissions per Capita",
+          "scale": {
+            "scheme": "yellowgreenblue"
+          }
+        },
+        "tooltip": [
+          { "field": "Entity", "type": "nominal", "title": "Country" },
+          { "field": "Year", "type": "ordinal", "title": "Year" },
+          {
+            "field": "Emissions",
+            "type": "quantitative",
+            "title": "CO2 Emissions per Capita",
+            "format": ".2f"
+          }
+        ]
+      }
+    }
+  ]
+}

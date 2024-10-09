@@ -94,6 +94,13 @@
         <div class="pure-u-1 pure-u-md-1-2">
           <div id="stream_graph" class="vis-container"></div>
         </div>
+        <div class="pure-u-1-1">
+          <h2>Co2 Emissions</h2>
+          <p>talks about emissions</p>
+        </div>
+        <div class="pure-u-1 pure-u-md-1-2">
+          <div id="heat_map" class="vis-container"></div>
+        </div>
       </div>
       <!-- End Visualization section -->
     </div>
@@ -116,6 +123,11 @@
 
       var streamGraph = "Visualisations/ageDependency.vg.json";
       vegaEmbed("#stream_graph", streamGraph)
+        .then(function (result) {})
+        .catch(console.error);
+
+      var heatMap = "Visualisations/emissions.vg.json";
+      vegaEmbed("#heat_map", heatMap)
         .then(function (result) {})
         .catch(console.error);
     </script>

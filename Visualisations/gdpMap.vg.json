@@ -7,7 +7,7 @@
     "fontSize": 20,
     "fontWeight": "bold"
   },
-  "width": 800,
+  "width": "container",
   "height": 400,
   "data": {
     "url": "https://raw.githubusercontent.com/arav0020/FIT3179-DataVis2/refs/heads/main/Base%20Data/ne_110m_admin_0_countries.topojson",

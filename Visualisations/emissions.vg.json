@@ -49,6 +49,17 @@
   },
   "layer": [
     {
+      "params": [
+        {
+          "name": "Highlight",
+          "select": {
+            "type": "point",
+            "fields": ["Entity", "Year"],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
       "mark": "rect",
       "encoding": {
         "color": {
@@ -63,6 +74,13 @@
             "labelFontSize": 15,
             "titleFontSize": 15
           }
+        },
+        "opacity": {
+          "condition": {
+            "test": { "param": "Highlight", "empty": false },
+            "value": 0.5
+          },
+          "value": 1
         },
         "tooltip": [
           { "field": "Entity", "type": "nominal", "title": "Country" },

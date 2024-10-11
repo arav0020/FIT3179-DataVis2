@@ -47,6 +47,17 @@
   },
   "layer": [
     {
+      "params": [
+        {
+          "name": "Highlight",
+          "select": {
+            "type": "point",
+            "fields": ["Continent"],
+            "on": "mouseover",
+            "clear": "mouseout"
+          }
+        }
+      ],
       "mark": {
         "type": "area"
       },
@@ -79,7 +90,13 @@
             "symbolSize": 200
           }
         },
-        "opacity": { "value": 1 },
+        "opacity": {
+          "condition": {
+            "test": { "param": "Highlight", "empty": true },
+            "value": 1
+          },
+          "value": 0.5
+        },
         "tooltip": [
           { "field": "Continent", "type": "nominal", "title": "Continent" },
           {

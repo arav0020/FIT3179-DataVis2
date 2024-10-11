@@ -169,55 +169,8 @@
     },
     {
       "transform": [
-        {"filter": "datum.Entity == 'Malaysia'"}
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "xOffset": -30,
-        "yOffset": -10,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "black"
-      },
-      "encoding": {
-        "text": {
-          "field": "Entity",
-          "type": "nominal"
-        },
-        "color":{
-          "value": "maroon"
-        }
-      }
-    },
-    {
-      "transform": [
-        {"filter": "datum.Entity == 'Australia'"}
-      ],
-      "mark": {
-        "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "xOffset": -30,
-        "yOffset": -10,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "black"
-      },
-      "encoding": {
-        "text": {
-          "field": "Entity",
-          "type": "nominal"
-        },
-        "color":{
-          "value": "maroon"
-        }
-      }
-    },
-    {
-      "transform": [
-        {"filter": "datum.Code == 'USA'"}
+        {"filter": "datum.Code == 'MYS' || datum.Code == 'USA' || datum.Code == 'AUS' || datum.Code == 'GBR' || datum.Code == 'SGP' || datum.Code == 'CHN' || datum.Code == 'KWT'"},
+        {"filter": "datum.Year == Year_selection"}
       ],
       "mark": {
         "type": "text",

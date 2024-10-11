@@ -153,8 +153,7 @@
               "test": "Continent_selection != null && datum.Migration <0",
               "value": "#DB4325"
             }
-          ],
-          "legend": null
+          ]
         },
         "opacity": { "value": 0.4 },
         "tooltip": [

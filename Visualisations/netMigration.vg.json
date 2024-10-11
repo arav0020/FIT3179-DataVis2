@@ -190,6 +190,39 @@
           "value": "maroon"
         }
       }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.Year==Year_selection"
+        },
+        {
+          "aggregate": [
+            {
+              "op": "min",
+              "field": "Year",
+              "as": "Year"
+            }
+          ]
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 70,
+        "color": "lightgray",
+        "opacity": 0.5
+      },
+      "encoding": {
+        "text": {
+          "field": "Year"
+        },
+        "x": {
+          "value": 450
+        },
+        "y": {
+          "value": 60
+        }
+      }
     }
   ]
 }

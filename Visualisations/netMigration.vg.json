@@ -4,7 +4,7 @@
   "height": 500,
   "title": {
     "text": "Net migration into each country (per 1000 people)",
-    "subtitle": "You can filter the year and continent you wish to display",
+    "subtitle": "You can filter the year and continent you wish to display. Hover over a point to see which country it is",
     "subtitleColor": "gray",
     "fontSize": 20,
     "fontWeight": "bold"
@@ -74,7 +74,8 @@
         "ticks": false,
         "titleFontSize": 15,
         "labelLimit": 70,
-        "labelFontSize": 15
+        "labelFontSize": 15,
+        "labels":false
       }
     },
     "y": {
@@ -174,13 +175,12 @@
       ],
       "mark": {
         "type": "text",
-        "align": "left",
-        "baseline": "middle",
-        "xOffset": -30,
-        "yOffset": -10,
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "black"
+        "align": "center",
+        "baseline": "top",
+        "xOffset": 0,
+        "yOffset": -20,
+        "fontSize": 14,
+        "fontWeight": "bold"
       },
       "encoding": {
         "text": {
